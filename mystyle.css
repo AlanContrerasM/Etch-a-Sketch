@@ -2,9 +2,26 @@ html {
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); 
     min-height: 100%;
 }
-header {
+#title {
     text-align: center;
     color: white;
-    font-size: large;
+    font-size: 5em;
     font-weight: 300;
+}
+
+.container {
+    margin: auto;
+    text-align: center;
+    display: grid;
+    width: 550px;
+    height: 550px;
+    background-color: black;
+}
+main {
+    margin: auto;
+    text-align: center;
+}
+.sketchSquare {
+    background-color:white;
+    padding-top:50%;
 }

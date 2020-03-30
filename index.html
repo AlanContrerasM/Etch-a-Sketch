@@ -8,15 +8,61 @@
         <meta name="odin project Etch-a-Sketch" content="Etch-a-Sketch try">
         <title>Etch-a-Sketch try</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <link rel="stylesheet" type="text/css" href="reset.css">
     </head>
     <body>
         <header>
-            <h1>Etch-a-Sketch</h1>
+            <h1 id="title">Etch-a-Sketch</h1>
         </header>
-        <main></main>
+        <main>
+            <button id="newSketch">Create New Sketch?</button>
+            <div class="container"></div>
+        </main>
         <footer></footer>
+
         <script>
-            console.log("Page Created!")
+            console.log("Page Created!");
+            const container = document.querySelector(".container");
+            const newSketchButton = document.querySelector("#newSketch")
+
+            function createSketchGrid(size){
+                console.log("CreateSketchGrid was called")
+                container.style.gridTemplateColumns = `repeat(${size},1fr)`;
+                container.style.gridTemplateRows = `repeat(${size},1fr)`;
+                console.log("Columns and Rows were set.")
+                for(i=0; i<size**2; i++){
+                    const sketchSquare = document.createElement("div");
+                    sketchSquare.classList.add('sketchSquare');
+                    sketchSquare.style.opacity = "1";
+                    container.appendChild(sketchSquare);
+                }
+            }
+
+            container.addEventListener("mouseover", (event) =>{
+                const currentOpacity = event.target.style.opacity;
+                const currentColor = event.target.style.backgroundColor;
+                
+                if(currentColor == ""){
+                    const newColor = getRandomColor();
+                    event.target.style.backgroundColor = `#${newColor}`;
+                    
+                } else event.target.style.opacity = currentOpacity - 0.1;
+                
+                
+            })
+
+            function getRandomColor(){
+                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                return randomColor;
+            }
+
+            newSketchButton.addEventListener("click",(e) => {
+                const newSize = prompt("What size you want the sketch?");
+                container.innerHTML = ""
+                createSketchGrid(newSize)
+            })
+
+            createSketchGrid(16)
         </script>
     </body>
 
